@@ -42,7 +42,7 @@ async function run() {
       const updatedStatus = req.body;
 
       const filter = { _id: ObjectId(id) };
-
+      const options = { upsert: true };
       const updateDoc = {
         $set: {
           eventStatus: updatedStatus.status,
