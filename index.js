@@ -35,6 +35,23 @@ async function run() {
       res.send(event1);
     });
 
+    //Update Status
+    app.put("/status/:id", async (req, res) => {
+      const id = req.params.id;
+      console.log(id);
+      const updatedStatus = req.body;
+      console.log(updatedStatus);
+      const filter = { _id: ObjectId(id) };
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: {
+          eventStatus: updatedStatus.status,
+        },
+      };
+      const result = await booked.updateOne(filter, updateDoc, options);
+      res.json(result);
+    });
+
     //Load Booked Event
     app.get("/allbooking", async (req, res) => {
       const cursor = booked.find({});
