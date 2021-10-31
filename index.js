@@ -45,7 +45,7 @@ async function run() {
 
       const updateDoc = {
         $set: {
-          eventStatus: "approved",
+          eventStatus: updatedStatus.status,
         },
       };
       const result = await booked.updateOne(filter, updateDoc, options);
