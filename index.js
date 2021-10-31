@@ -38,14 +38,14 @@ async function run() {
     //Update Status
     app.put("/status/:id", async (req, res) => {
       const id = req.params.id;
-      console.log(id);
+
       const updatedStatus = req.body;
-      console.log(updatedStatus);
+
       const filter = { _id: ObjectId(id) };
-      const options = { upsert: true };
+
       const updateDoc = {
         $set: {
-          eventStatus: updatedStatus.status,
+          eventStatus: "approved",
         },
       };
       const result = await booked.updateOne(filter, updateDoc, options);
